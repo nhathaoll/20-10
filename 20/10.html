@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc mừng Ngày Phụ Nữ Việt Nam 20/10</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FFF6FA;
+      --card:#ffffff;
+      --accent:#E83E8C;
+      --accent-2:#FF9CCF;
+      --text:#3b2a2f;
+      --muted:#7a6a6f;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(232,62,140,0.08), transparent 8%),
+                  radial-gradient(900px 400px at 90% 90%, rgba(255,156,207,0.06), transparent 10%),
+                  var(--bg);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    /* Card */
+    .card{
+      width:100%;
+      max-width:980px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--card));
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(60,20,40,0.12);
+      padding:36px;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(232,62,140,0.08);
+    }
+
+    header{
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
+
+    .logo{
+      width:92px;
+      height:92px;
+      border-radius:18px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;
+      place-items:center;
+      color:white;
+      font-family:'Playfair Display', serif;
+      font-size:20px;
+      font-weight:700;
+      box-shadow:0 8px 20px rgba(232,62,140,0.18);
+    }
+
+    h1{
+      font-family:'Playfair Display', serif;
+      margin:0;
+      font-size:30px;
+      line-height:1.05;
+      color:var(--text);
+    }
+    p.lead{
+      margin:6px 0 0 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .content{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      margin-top:28px;
+    }
+
+    .message{
+      background:rgba(255,255,255,0.6);
+      padding:22px;
+      border-radius:14px;
+      border:1px dashed rgba(232,62,140,0.08);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    .message p{margin:0 0 10px 0}
+    .message .from{font-weight:600;color:var(--accent)}
+
+    .flowers{
+      background:linear-gradient(180deg,#fff0f6, #fff);
+      border-radius:12px;
+      padding:18px;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-align:center;
+    }
+
+    .flowers .big{
+      font-size:64px;
+      transform:rotate(-8deg);
+      filter:drop-shadow(0 6px 12px rgba(232,62,140,0.12));
+    }
+
+    .btns{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+    .btn.ghost{background:transparent;border:1px solid rgba(232,62,140,0.12);color:var(--accent)}
+
+    /* Floating hearts */
+    .heart{
+      position:absolute;
+      width:20px;height:20px;
+      transform:translate(-50%,-50%) rotate(45deg);
+      background:var(--accent);
+      border-radius:4px 4px 0 0;
+      opacity:0.95;
+      animation:float 5s linear infinite;
+    }
+    .heart:before, .heart:after{
+      content:"";position:absolute;width:20px;height:20px;border-radius:50%;background:var(--accent);
+      top:-10px;left:0
+    }
+    .heart:after{left:-10px}
+
+    @keyframes float{
+      0%{transform:translate(-50%,20%) scale(0.6) rotate(45deg);opacity:0}
+      10%{opacity:1}
+      50%{transform:translate(-50%,-40%) scale(1) rotate(45deg)}
+      100%{transform:translate(-50%,-160%) scale(0.8) rotate(45deg);opacity:0}
+    }
+
+    /* ribbon */
+    .ribbon{
+      position:absolute;right:-80px;top:-40px;transform:rotate(22deg);
+      background:linear-gradient(90deg,#fff4fb 0%, rgba(255,255,255,0));
+      width:300px;height:300px;border-radius:50%;opacity:0.9;pointer-events:none
+    }
+
+    footer{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    small{color:var(--muted)}
+
+    /* Confetti container */
+    .confetti-container{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:60;
+      overflow:hidden;
+    }
+
+    /* nút điều khiển nhạc */
+    .music-btn{
+      position:fixed;
+      left:16px;
+      bottom:16px;
+      z-index:120;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      border:0;
+      background:linear-gradient(90deg,#E83E8C,#FF9CCF);
+      color:#fff;
+      font-size:20px;
+      display:grid;
+      place-items:center;
+      box-shadow:0 8px 22px rgba(232,62,140,0.18);
+      cursor:pointer;
+      transition:transform .12s ease, opacity .12s;
+      opacity:0.95;
+    }
+    .music-btn:active{ transform:scale(.96) }
+    .music-btn.playing{ box-shadow:0 12px 28px rgba(232,62,140,0.26); transform:scale(1.03) }
+    .music-btn[aria-pressed="true"]{ outline:2px solid rgba(255,255,255,0.08) }
+
+    /* Responsive */
+    @media (max-width:880px){
+      .content{grid-template-columns:1fr}
+      .flowers{order:-1}
+      .flowers .big{font-size:48px}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="title">
+    <div class="ribbon" aria-hidden="true"></div>
+    <header>
+      <div class="logo" aria-hidden="true">20/10</div>
+      <div>
+        <h1 id="title">Chúc mừng Ngày Phụ Nữ Việt Nam</h1>
+        <p class="lead">Kính chúc những người phụ nữ thân yêu luôn tươi cười, mạnh khỏe và rạng rỡ như hoa.</p>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="message" aria-label="Lời chúc">
+        <p class="from">Gửi đến người phụ nữ đặc biệt:</p>
+        <p>Hôm nay là ngày của bạn — cảm ơn vì yêu thương, sự kiên nhẫn và những nụ cười. Mong bạn luôn tràn đầy niềm vui, thành công và được yêu thương nhiều hơn mỗi ngày.</p>
+        <p>Thân ái,</p>
+        <p><strong>Nhật Hào</strong></p>
+
+       
+      </section>
+
+      <aside class="flowers" aria-label="Hình hoa">
+        <div class="big" aria-hidden="true">🌸</div>
+        <div style="max-width:240px">Hoa, nụ cười và một bữa tối ấm áp — chúc bạn tận hưởng trọn vẹn ngày 20/10.</div>
+      </aside>
+    </div>
+
+    <footer>
+      <small>20/10 — Ngày Phụ Nữ Việt Nam</small>
+    
+    </footer>
+
+    <!-- floating hearts positioned by inline style for variety -->
+    <div class="heart" style="left:12%; bottom:12%; animation-duration:6s; width:26px;height:26px"></div>
+    <div class="heart" style="left:28%; bottom:6%; animation-duration:5.5s; background:var(--accent-2)"></div>
+    <div class="heart" style="left:48%; bottom:4%; animation-duration:7s"></div>
+    <div class="heart" style="left:72%; bottom:14%; animation-duration:6.5s"></div>
+    <div class="heart" style="left:86%; bottom:10%; animation-duration:5.2s"></div>
+
+  </div>
+
+  <!-- Confetti canvas -->
+  <div class="confetti-container" aria-hidden="true"></div>
+
+  <!-- Audio + control -->
+  <audio id="bg-music" src="D:\2010\20\7123985266609.mp4" loop crossorigin="anonymous"></audio>
+  <button id="music-btn" class="music-btn" aria-label="Bật / Tắt nhạc" title="Bật / Tắt nhạc">🔊</button>
+
+  <script>
+    /* Confetti: nhiều pháo hoa giấy, nhẹ và hiệu năng tốt */
+    (function(){
+      const container = document.querySelector('.confetti-container');
+      if (!container) return;
+      const canvas = document.createElement('canvas');
+      container.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+
+      let W = canvas.width = window.innerWidth;
+      let H = canvas.height = window.innerHeight;
+      window.addEventListener('resize', () => {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      });
+
+      const colors = ['#FF6B6B','#FFD166','#FF9CCF','#FFB4A2','#C7F9CC','#9AE6B4','#FFC857','#6BE7FF'];
+      const confetti = [];
+      const MAX = 800; // giới hạn để tránh ngốn bộ nhớ
+
+      function rand(min, max){ return Math.random()*(max-min)+min; }
+
+      function spawn(n, xRange){
+        for (let i=0;i<n;i++){
+          if (confetti.length >= MAX) break;
+          const x = xRange ? rand(xRange[0], xRange[1]) : rand(0, W);
+          confetti.push({
+            x: x,
+            y: rand(-H*0.2, -10),
+            w: rand(6, 14),
+            h: rand(8, 22),
+            vx: rand(-2.2, 2.2),
+            vy: rand(1.2, 5),
+            r: rand(0, Math.PI*2),
+            vr: rand(-0.12, 0.12),
+            color: colors[(Math.random()*colors.length)|0],
+            tilt: rand(-0.5,0.5),
+            opacity: rand(0.8,1)
+          });
+        }
+      }
+
+      function update(){
+        ctx.clearRect(0,0,W,H);
+        for (let i = confetti.length-1; i >= 0; i--){
+          const p = confetti[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.03; // gravity
+          p.r += p.vr;
+          p.tilt = Math.sin((p.y + i) * 0.02) * 0.6;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.r);
+          ctx.globalAlpha = p.opacity;
+          ctx.fillStyle = p.color;
+          // draw tilted rectangle (paper confetti)
+          ctx.fillRect(-p.w/2 + p.tilt*6, -p.h/2, p.w, p.h);
+          ctx.restore();
+
+          // remove if out of view
+          if (p.y > H + 50 || p.x < -100 || p.x > W + 100) confetti.splice(i,1);
+        }
+        requestAnimationFrame(update);
+      }
+
+      // initial heavy shower
+      spawn(220, [0, W]);
+
+      // continuous bursts to keep many confetti
+      setInterval(()=> spawn(40, [W*0.1, W*0.9]), 600);
+      setInterval(()=> spawn(18, [0, W*0.2]), 900); // left burst
+      setInterval(()=> spawn(18, [W*0.8, W]), 900); // right burst
+
+      // interactive extra burst on card hover
+      const card = document.querySelector('.card');
+      if (card){
+        card.addEventListener('mouseenter', ()=> spawn(60, [W*0.2, W*0.8]));
+        card.addEventListener('click', ()=> spawn(120, [W*0.15, W*0.85]));
+      }
+
+      update();
+    })();
+
+    // Music autoplay with fallback to user interaction
+    (function(){
+      const audio = document.getElementById('bg-music');
+      const btn = document.getElementById('music-btn');
+      if (!audio || !btn) return;
+      audio.volume = 0.6;
+
+      function setState(){
+        const playing = !audio.paused && !audio.muted;
+        btn.classList.toggle('playing', playing);
+        btn.setAttribute('aria-pressed', String(playing));
+        btn.textContent = playing ? '🔊' : '🔈';
+      }
+
+      // Try autoplay on load; if blocked, user can tap the button
+      window.addEventListener('load', ()=>{
+        audio.play().then(()=> setState() ).catch(()=> {
+          // autoplay blocked: show control for user
+          setState();
+        });
+      });
+
+      btn.addEventListener('click', ()=>{
+        if (audio.paused) {
+          audio.play().then(()=> setState() ).catch(()=> {});
+        } else {
+          audio.pause();
+          setState();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

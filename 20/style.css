@@ -1,0 +1,229 @@
+/* Fonts cơ bản */
+:root{
+  --accent: #e76f51;
+  --bg: #fff7f3;
+  --card: rgba(255,255,255,0.85);
+}
+
+*{box-sizing:border-box}
+html,body{
+  height:100%;
+  margin:0;
+  font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #fff7f3 0%, #fff1ea 100%);
+  color:#333;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Thiết lập chung cho toàn bộ trang */
+body {
+    font-family: 'Times New Roman', Times, serif; /* Chọn font chữ trang nhã */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #fce4ec 0%, #ffebee 100%); /* Màu hồng nhạt, dịu dàng */
+    color: #333; /* Màu chữ cơ bản */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; /* Ngăn cuộn khi có pháo giấy bay ra ngoài */
+    position: relative; /* Để confetti có thể position absolute */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95); /* Nền hộp nội dung hơi trong suốt, rõ hơn */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Bóng đổ rõ hơn */
+    max-width: 800px;
+    width: 90%;
+    z-index: 10; /* Đảm bảo nội dung nằm trên pháo giấy */
+    position: relative; /* Để các hiệu ứng fly-in hoạt động tốt */
+}
+
+/* Video hai bên */
+.side-video {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 5;
+  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.05);
+}
+.side-video.left { left: 16px; }
+.side-video.right { right: 16px; }
+
+.side-video video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  pointer-events:none;
+}
+
+/* Ẩn video trên màn hình nhỏ */
+@media (max-width:900px){
+  .side-video{ display:none; }
+}
+
+/* Tiêu đề chính */
+header h1 {
+    color: #c2185b; /* Màu hồng đậm */
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #f8bbd0;
+    padding-bottom: 15px;
+    display: inline-block;
+    animation: bounceIn 1.5s ease-out forwards; /* Hiệu ứng nảy vào */
+    opacity: 0; /* Ẩn ban đầu */
+    animation-delay: 0.5s;
+}
+
+/* Message box */
+.message-box{
+  text-align:center;
+  padding:18px 12px;
+}
+.message-box h2{
+  margin:8px 0 12px;
+  font-family: 'Playfair Display', serif;
+  font-size:1.6rem;
+  color:var(--accent);
+}
+.greeting{
+  font-size:1.05rem;
+  line-height:1.6;
+  color:#444;
+  margin:0 0 14px 0;
+}
+.signature{
+  margin-top:18px;
+  font-weight:600;
+  color:#666;
+}
+
+/* Lời chúc */
+.greeting {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #555;
+    padding: 0 20px;
+}
+
+/* Hiệu ứng chữ bay lên (Fly-in effect) */
+.fly-in-text {
+    opacity: 0;
+    transform: translateY(20px); /* Bắt đầu từ dưới một chút */
+    animation: flyIn 1s ease-out forwards;
+}
+
+.message-box h2.fly-in-text {
+    animation-delay: 1.5s; /* Chữ H2 xuất hiện sau */
+}
+
+p.greeting.fly-in-text {
+    animation-delay: 2s; /* Lời chúc xuất hiện sau nữa */
+}
+
+p.signature.fly-in-text {
+    animation-delay: 2.5s; /* Chữ ký xuất hiện cuối cùng */
+}
+
+/* Một hiệu ứng nhập cảnh nhẹ */
+.fly-in-text{
+  opacity:0;
+  transform: translateY(8px);
+  animation: flyIn .7s forwards;
+}
+.fly-in-text:nth-child(1){ animation-delay: .15s; }
+.fly-in-text:nth-child(2){ animation-delay: .25s; }
+.fly-in-text:nth-child(3){ animation-delay: .35s; }
+
+/* Keyframe cho hiệu ứng chữ bay lên */
+@keyframes flyIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframe cho hiệu ứng nảy vào (cho tiêu đề chính) */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Styling cho pháo giấy */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Đảm bảo không cản trở tương tác */
+    overflow: hidden;
+    z-index: 1; /* Nằm dưới nội dung chính */
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--confetti-color); /* Màu sẽ được JS gán */
+    border-radius: 50%; /* Hình tròn hoặc hình vuông */
+    animation: fall ease-in forwards;
+    opacity: 0;
+}
+
+@keyframes fall {
+    0% {
+        transform: translate(var(--x-start), var(--y-start)) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x-end), var(--y-end)) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+
+/* Responsive cho màn hình nhỏ hơn */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+    .message-box h2 {
+        font-size: 1.4em;
+    }
+    .greeting {
+        font-size: 1em;
+    }
+}
